@@ -17,6 +17,7 @@ module Danthes
 
     # Ensure the subscription signature is correct and that it has not expired.
     def authenticate_subscribe(message)
+      message['error'] = 'ext not there.' and return unless message['ext']
       subscription = Danthes.subscription(channel: message['subscription'],
                                           timestamp: message['ext']['danthes_timestamp'])
       if message['ext']['danthes_signature'] != subscription[:signature]

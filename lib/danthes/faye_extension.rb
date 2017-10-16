@@ -10,6 +10,10 @@ module Danthes
       elsif message['channel'] !~ %r{^/meta/}
         authenticate_publish(message)
       end
+      if message['error']
+        puts "messase contains error: #{message.inspect}"
+        raise "messase contains error: #{message.inspect}"
+      end
       callback.call(message)
     end
 

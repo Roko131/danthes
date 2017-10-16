@@ -57,7 +57,6 @@ module Danthes
     # Publish the given data to a specific channel. This ends up sending
     # a Net::HTTP POST request to the Faye server.
     def publish_to(channel, data)
-      binding.pry
       publish_message(message(channel, data))
     end
 

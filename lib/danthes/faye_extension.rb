@@ -17,7 +17,7 @@ module Danthes
 
     # Ensure the subscription signature is correct and that it has not expired.
     def authenticate_subscribe(message)
-      message['error'] = 'ext not there.' and return unless message['ext']
+      message['error'] = 'ext1 not there.' and return unless message['ext']
       subscription = Danthes.subscription(channel: message['subscription'],
                                           timestamp: message['ext']['danthes_timestamp'])
       if message['ext']['danthes_signature'] != subscription[:signature]
@@ -29,6 +29,7 @@ module Danthes
 
     # Ensures the secret token is correct before publishing.
     def authenticate_publish(message)
+      message['error'] = 'ext2 not there.' and return unless message['ext']
       if Danthes.config[:secret_token].nil?
         fail Error, 'No secret_token config set, ensure danthes.yml is loaded properly.'
       elsif message['ext']['danthes_token'] != Danthes.config[:secret_token]

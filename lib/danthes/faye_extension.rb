@@ -12,7 +12,9 @@ module Danthes
       end
       if message['error']
         puts "messase contains error: #{message.inspect}"
-        raise "messase contains error: #{message.inspect}"
+        # raise "messase contains error: #{message.inspect}"
+      else
+        puts "messase valid: #{message.inspect}"
       end
       callback.call(message)
     end
